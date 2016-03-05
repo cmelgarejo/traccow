@@ -1,0 +1,6 @@
+<h2>New weight</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: weight_path(@conn, :create) %>
+
+<%= link "Back", to: weight_path(@conn, :index) %>

@@ -1,0 +1,28 @@
+<h2>Listing weights</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Weight</th>
+      <th>Weight date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for weight <- @weights do %>
+    <tr>
+      <td><%= weight.weight %></td>
+      <td><%= weight.weight_date %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: weight_path(@conn, :show, weight), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: weight_path(@conn, :edit, weight), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: weight_path(@conn, :delete, weight), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New weight", to: weight_path(@conn, :new) %>

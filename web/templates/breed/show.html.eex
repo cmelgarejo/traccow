@@ -1,0 +1,18 @@
+<h2>Show breed</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @breed.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @breed.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: breed_path(@conn, :edit, @breed) %>
+<%= link "Back", to: breed_path(@conn, :index) %>

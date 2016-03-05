@@ -1,0 +1,18 @@
+<h2>Show event</h2>
+
+<ul>
+
+  <li>
+    <strong>Notes:</strong>
+    <%= @event.notes %>
+  </li>
+
+  <li>
+    <strong>Event date:</strong>
+    <%= @event.event_date %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: event_path(@conn, :edit, @event) %>
+<%= link "Back", to: event_path(@conn, :index) %>

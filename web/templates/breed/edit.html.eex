@@ -1,0 +1,6 @@
+<h2>Edit breed</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: breed_path(@conn, :update, @breed) %>
+
+<%= link "Back", to: breed_path(@conn, :index) %>

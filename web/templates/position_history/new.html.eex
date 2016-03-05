@@ -1,0 +1,6 @@
+<h2>New position history</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: position_history_path(@conn, :create) %>
+
+<%= link "Back", to: position_history_path(@conn, :index) %>

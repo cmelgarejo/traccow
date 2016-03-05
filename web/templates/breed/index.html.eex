@@ -1,0 +1,28 @@
+<h2>Listing breed</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for breed <- @breed do %>
+    <tr>
+      <td><%= breed.name %></td>
+      <td><%= breed.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: breed_path(@conn, :show, breed), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: breed_path(@conn, :edit, breed), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: breed_path(@conn, :delete, breed), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New breed", to: breed_path(@conn, :new) %>

@@ -1,0 +1,6 @@
+<h2>Edit weight type</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: weight_type_path(@conn, :update, @weight_type) %>
+
+<%= link "Back", to: weight_type_path(@conn, :index) %>

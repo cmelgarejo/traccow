@@ -1,0 +1,32 @@
+{
+  "name": "traccow",
+  "description": "Online tracking of your livestock",
+  "main": "mix.exs",
+  "authors": [
+    "Christian Melgarejo Bresanovich <christian.melgarejo@outlook.com>"
+  ],
+  "license": "Propietary",
+  "moduleType": [],
+  "homepage": "https://www.traccow.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ag-grid": "~3.3",
+    "mui": "~0.4.7"
+  },
+  "overrides": {
+    "ag-grid": {
+      "main": [
+        "dist/ag-grid.min.js",
+        "dist/styles/ag-grid.css",
+        "dist/styles/theme-blue.min.css"
+      ]
+    }
+  }
+}

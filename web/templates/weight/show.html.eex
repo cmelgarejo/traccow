@@ -1,0 +1,18 @@
+<h2>Show weight</h2>
+
+<ul>
+
+  <li>
+    <strong>Weight:</strong>
+    <%= @weight.weight %>
+  </li>
+
+  <li>
+    <strong>Weight date:</strong>
+    <%= @weight.weight_date %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: weight_path(@conn, :edit, @weight) %>
+<%= link "Back", to: weight_path(@conn, :index) %>

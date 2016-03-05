@@ -1,0 +1,28 @@
+<h2>Listing weighttypes</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for weight_type <- @weighttypes do %>
+    <tr>
+      <td><%= weight_type.name %></td>
+      <td><%= weight_type.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: weight_type_path(@conn, :show, weight_type), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: weight_type_path(@conn, :edit, weight_type), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: weight_type_path(@conn, :delete, weight_type), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New weight type", to: weight_type_path(@conn, :new) %>

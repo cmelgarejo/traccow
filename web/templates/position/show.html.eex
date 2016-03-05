@@ -1,0 +1,23 @@
+<h2>Show position</h2>
+
+<ul>
+
+  <li>
+    <strong>Lat:</strong>
+    <%= @position.lat %>
+  </li>
+
+  <li>
+    <strong>Lon:</strong>
+    <%= @position.lon %>
+  </li>
+
+  <li>
+    <strong>Position at:</strong>
+    <%= @position.position_at %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: position_path(@conn, :edit, @position) %>
+<%= link "Back", to: position_path(@conn, :index) %>
