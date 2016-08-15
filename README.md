@@ -1,6 +1,16 @@
 # Traccow
 
-To start your Phoenix app:
+### MVP created for the British Embassy Paraguay - Agro Hackathon
+
+Using GPS and WiFi/Bluetooth network meshes to track and locate live stock, the
+app also mantains a file for each of the animals; tracks their feeding,
+growth and provides specialized tips for each animal according their data.
+
+##### -Honorable mention-
+
+## Getting started
+
+To start the app:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`

@@ -1,4 +1,4 @@
-<h2>Listing weighttypes</h2>
+<h2>Listing weight_types</h2>
 
 <table class="table">
   <thead>
@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for weight_type <- @weighttypes do %>
+<%= for weight_type <- @weight_types do %>
     <tr>
       <td><%= weight_type.name %></td>
       <td><%= weight_type.description %></td>

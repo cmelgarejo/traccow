@@ -14,6 +14,8 @@ config :traccow, Traccow.Endpoint,
   pubsub: [name: Traccow.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :traccow, Traccow.Gettext, default_locale: "es"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -26,4 +28,4 @@ import_config "#{Mix.env}.exs"
 # Configure phoenix generators
 config :phoenix, :generators,
   migration: true,
-  binary_id: false
+  binary_id: true

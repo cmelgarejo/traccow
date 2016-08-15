@@ -1,0 +1,237 @@
+
+<ul class="mui-tabs__bar">
+  <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">Dashboard</a></li>
+  <li><a data-mui-toggle="tab" data-mui-controls="pane-default-2">Mapa</a></li>
+  <li><a data-mui-toggle="tab" data-mui-controls="pane-default-3">Fichas</a></li>
+</ul>
+<div class="mui-tabs__pane mui--is-active" id="pane-default-1" style="height: auto">
+  <div id="weight_chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</div>
+<div class="mui-tabs__pane mui--is-active" id="pane-default-2">
+  <div id="map" style="width: 1890px; min-height: 720px"></div>
+</div>
+<div class="mui-tabs__pane mui--is-active" id="pane-default-3"  style="height: auto">
+  <div id="cow_grid" class="ag-grid ag-responsive ag-blue"></div>
+</div>
+
+<script>
+var map;
+$(document).ready(function () {
+
+    setTimeout(function() {
+      $('#pane-default-2').removeClass('mui--is-active');
+      $('#pane-default-3').removeClass('mui--is-active');
+    }, 100);
+    $('#weight_chart').highcharts({
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'Ganancia de Peso',
+            x: -20 //center
+        },
+        subtitle: {
+            text: '',
+            x: -20
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e. %b',
+                year: '%b'
+            },
+            title: {
+                text: 'Fecha'
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Kg.'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }],
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            }
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    enabled: true
+                }
+            }
+        },
+        tooltip: {
+            valueSuffix: 'Kg.'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: '6A100',
+            data: [[Date.UTC(2013, 8, 15), 30], [Date.UTC(2014, 4, 4), 180], [Date.UTC(2014, 8, 15), 240], [Date.UTC(2015, 8, 15), 365]]
+        }, {
+            name: '6A101',
+            data: [[Date.UTC(2013, 8, 15), 32], [Date.UTC(2014, 4, 4), 150], [Date.UTC(2014, 8, 15), 214], [Date.UTC(2015, 8, 15), 335]]
+        },
+        {
+            name: '6A102',
+            data: [[Date.UTC(2013, 9, 15), 33], [Date.UTC(2014, 5, 2), 120], [Date.UTC(2014, 9, 15), 220], [Date.UTC(2015, 9, 15), 350]]
+        },
+        {
+            name: '6A103',
+            data: [[Date.UTC(2013, 9, 15), 32], [Date.UTC(2014, 5, 2), 120], [Date.UTC(2014, 9, 15), 230], [Date.UTC(2015, 9, 15), 340]]
+        },
+        {
+            name: '6A104',
+            data: [[Date.UTC(2013, 10, 15), 37], [Date.UTC(2014, 5, 2), 110], [Date.UTC(2014, 10, 15), 243], [Date.UTC(2015, 10, 15), 330]]
+        },
+        {
+            name: '6A105',
+            data: [[Date.UTC(2013, 10, 15), 32], [Date.UTC(2014, 5, 2), 115], [Date.UTC(2014, 10, 15), 223], [Date.UTC(2015, 10, 15), 340]]
+        },
+        {
+            name: '6A106',
+            data: [[Date.UTC(2013, 11, 24), 34], [Date.UTC(2014, 5, 2), 113], [Date.UTC(2014, 11, 24), 234], [Date.UTC(2015, 11, 24), 343]]
+        },
+        {
+            name: '6A107',
+            data: [[Date.UTC(2013, 11, 24), 38], [Date.UTC(2014, 5, 2), 122], [Date.UTC(2014, 11, 24), 235], [Date.UTC(2015, 11, 24), 321]]
+        },
+        {
+            name: '6A108',
+            data: [[Date.UTC(2013, 11, 24), 32], [Date.UTC(2014, 5, 2), 145], [Date.UTC(2014, 11, 24), 234], [Date.UTC(2015, 11, 24), 322]]
+        }
+      ]
+    });
+
+    map = L.map('map').setView([-24.77813161122514, -56.51098115539551], 19);
+    L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+      maxZoom: 20,
+      subdomains:['mt0','mt1','mt2','mt3']
+    }).addTo(map); //googleHybrid
+    L.polygon([[-24.77780809931967, -56.51219129562378],[-24.778236708654003, -56.51094675064087],
+      [-24.77852407090165, -56.51088774204254],[-24.778830914601098, -56.51097893714905],[-24.77854842360391, -56.512539982795715],
+      [-24.77780809931967, -56.51219129562378]]).addTo(map);
+
+		var LeafIcon = L.Icon.extend({
+			options: {
+				iconSize:     [24, 24],
+				iconAnchor:   [12, 12],
+				popupAnchor:  [0, 0]
+			}
+		});
+
+		var greenIcon = new LeafIcon({iconUrl: 'images/ok.png'}), yellowIcon = new LeafIcon({iconUrl: 'images/ups.png'}), redIcon = new LeafIcon({iconUrl: 'images/no.png'});
+    L.marker([-24.778791455700592, -56.511657536029816],  {icon: redIcon}).bindPopup("6A100<br/>Se encuentra fuera de: Estancia Loma Potrero").addTo(map);
+    L.marker([-24.778289790051492, -56.51172190904617 ],  {icon: greenIcon}).bindPopup("6A101<br/>OK").addTo(map);
+    L.marker([-24.778206990671734, -56.51156634092331 ],  {icon: greenIcon}).bindPopup("6A102<br/>OK").addTo(map);
+    L.marker([-24.778635598628668, -56.51143491268158 ],  {icon: greenIcon}).bindPopup("6A103<br/>OK").addTo(map);
+    L.marker([-24.778737879854187, -56.51143491268158 ],  {icon: yellowIcon}).bindPopup("6A104<br/>Se encuentra cerca del límite de: Estancia Loma Potrero").addTo(map);
+    L.marker([-24.778757361982827, -56.51149928569794 ],  {icon: yellowIcon}).bindPopup("6A105<br/>Se encuentra cerca del límite de: Estancia Loma Potrero").addTo(map);
+    L.marker([-24.778065744543508, -56.51193380355835 ],  {icon: greenIcon}).bindPopup("6A106<br/>OK").addTo(map);
+    L.marker([-24.77840424792665 , -56.51159584522247],   {icon: greenIcon}).bindPopup("6A107<br/>OK").addTo(map);
+    L.marker([-24.77795372163788 , -56.51216447353363],   {icon: redIcon}).bindPopup("6A108<br/>No reporta hace 8hs.").addTo(map);
+    // L.marker([-24.77829953115136 , -56.5115287899971 ],    {icon: greenIcon}).bindPopup("").addTo(map);
+    // L.marker([-24.77853088204855 , -56.5114751458168 ],    {icon: greenIcon}).bindPopup("").addTo(map);
+
+		// L.marker([51.495, -0.083], {icon: redIcon}).bindPopup("I am a red leaf.").addTo(map);
+		// L.marker([51.49, -0.1], {icon: orangeIcon}).bindPopup("I am an orange leaf.").addTo(map);
+
+});
+</script>
+<script>
+(function() {
+  var grid, gridDiv;
+  var columnDefs = [
+    {headerName: "<%= gettext(" ") %>",              width: 200, cellRenderer: setButtons,  suppressSizeToFit: false, suppressResize: false},
+    {headerName: "<%= gettext("Código") %>", field: "code",   width: 200, suppressSizeToFit: true, suppressResize: false},
+    // {headerName: "<%= gettext("Imagen") %>", field: "image", width: 200, suppressSizeToFit: true, suppressResize: false},
+    //{headerName: "<%= gettext("Raza") %>",  field: "breed.name", width: 200, suppressSizeToFit: false},
+    {headerName: "<%= gettext("Notas") %>", field: "notes", width: 208, suppressSizeToFit: false},
+  ];
+
+  function setDate(params) {
+    return params.data.due_date.replace("T", " ").replace("Z", "");
+  }
+
+  function setNewValue(params) {
+    return returnTheSame(params);
+  }
+
+  function setLink(params) {
+    return linkTo('<%= client_path(@conn, :index) %>/'
+      + params.data.client.id, params.data.client.name);
+  }
+
+  function setButtons(params) {
+   var buttons = [
+      {
+        icon: "edit", title: "<%= gettext("Edit Cow") %>",
+        path: '<%= file_path(@conn, :index) %>/' + params.data.id + '/edit'
+      },
+      {
+        icon: "delete", title: "<%= gettext("Delete Cow") %>",
+        path: '<%= file_path(@conn, :index) %>/' + params.data.id + '/delete',
+        class: 'danger', method: "delete", onclick: "return confirmDelete()"
+      },
+    ];
+    return gridCommands(buttons);
+  }
+
+  var gridOptions = {
+      enableSorting: true,
+      rowSelection: 'single',
+      enableFilter: true,
+      enableColResize: true,
+      columnDefs: columnDefs,
+      localeText: gridLocaleText,
+      onGridReady: function() {
+        reloadGrid();
+        //setInterval(reloadGrid, 3000);
+      }
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    gridDiv = document.querySelector('#cow_grid');
+    grid = new agGrid.Grid(gridDiv, gridOptions);
+    window.addEventListener("resize", sizeToFit(grid, gridDiv, 300));
+  });
+
+  function reloadGrid(){
+    ajax("GET", "<%= dashboard_path(@conn, :grid_data) %>", null, true, onReadyStateChange)
+  }
+
+
+  function onReadyStateChange() {
+    if (this.readyState == 4 && this.status == 200) {
+      rowData = JSON.parse(this.responseText);
+      console.log(rowData)
+      // model = gridOptions.api.getModel();
+      // model.forEachNode(function(t) {
+      //   console.log(t.data);
+      //   rowData.forEach(function(r) {
+      //     if(t.data.id == r.id) {
+      //       console.log(r)
+      //     }
+      //   });
+      // });
+      gridOptions.api.setRowData(rowData);
+      gridOptions.api.sizeColumnsToFit();
+    }
+  }
+
+})();
+var model;
+</script>

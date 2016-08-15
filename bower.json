@@ -18,7 +18,10 @@
   ],
   "dependencies": {
     "ag-grid": "~3.3",
-    "mui": "~0.4.7"
+    "mui": "~0.4.7",
+    "jquery": "~2.2.1",
+    "leaflet": "~0.7.7",
+    "material-design-iconic-font": "^2.2.0"
   },
   "overrides": {
     "ag-grid": {

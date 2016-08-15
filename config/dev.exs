@@ -17,7 +17,7 @@ config :traccow, Traccow.Endpoint,
 config :traccow, Traccow.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg|eot|ttf|woff|woff2)$},
       ~r{priv/gettext/.*(po)$},
       ~r{web/views/.*(ex)$},
       ~r{web/templates/.*(eex)$}
@@ -36,7 +36,7 @@ config :phoenix, :stacktrace_depth, 20
 config :traccow, Traccow.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
+    password: "pgsql",
   database: "traccow_dev",
   hostname: "localhost",
   pool_size: 10

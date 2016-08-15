@@ -6,8 +6,8 @@ defmodule Traccow.WeightTypeController do
   plug :scrub_params, "weight_type" when action in [:create, :update]
 
   def index(conn, _params) do
-    weighttypes = Repo.all(WeightType)
-    render(conn, "index.html", weighttypes: weighttypes)
+    weight_types = Repo.all(WeightType)
+    render(conn, "index.html", weight_types: weight_types)
   end
 
   def new(conn, _params) do

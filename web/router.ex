@@ -16,16 +16,17 @@ defmodule Traccow.Router do
   scope "/", Traccow do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-    resources "/weight_types", WeightType
-    resources "/weights", Weight
-    resources "/venues", Venue
-    resources "/clients", Client
-    resources "/events", Event
-    resources "/files", File
-    resources "/breed", Breed
-    resources "/positions", Position
-    resources "/position_history", PositionHistory
+    get "/", DashboardController, :index
+    get "/data", DashboardController, :grid_data
+    resources "/weight_types", WeightTypeController
+    resources "/weights", WeightController
+    resources "/venues", VenueController
+    resources "/clients", ClientController
+    resources "/events", EventController
+    resources "/files", FileController
+    resources "/breed", BreedController
+    resources "/positions", PositionController
+    resources "/position_history", PositionHistoryController
   end
 
   # Other scopes may use custom stacks.

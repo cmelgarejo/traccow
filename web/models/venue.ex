@@ -10,13 +10,14 @@ defmodule Traccow.Venue do
     field :lat, :float
     field :lon, :float
     field :detection_radius, :integer
+    field :geofence, :string
 
     belongs_to :client, Traccow.Client
     timestamps
   end
 
-  @required_fields ~w(code name lat lon detection_radius)
-  @optional_fields ~w()
+  @required_fields ~w(code name geofence)
+  @optional_fields ~w(client_id lat lon detection_radius)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

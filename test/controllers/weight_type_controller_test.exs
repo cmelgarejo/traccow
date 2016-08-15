@@ -7,7 +7,7 @@ defmodule Traccow.WeightTypeControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, weight_type_path(conn, :index)
-    assert html_response(conn, 200) =~ "Listing weighttypes"
+    assert html_response(conn, 200) =~ "Listing weight_types"
   end
 
   test "renders form for new resources", %{conn: conn} do

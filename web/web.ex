@@ -36,6 +36,7 @@ defmodule Traccow.Web do
 
       import Traccow.Router.Helpers
       import Traccow.Gettext
+      import Traccow.Utilities
     end
   end
 
@@ -52,6 +53,7 @@ defmodule Traccow.Web do
       import Traccow.Router.Helpers
       import Traccow.ErrorHelpers
       import Traccow.Gettext
+      import Traccow.Utilities
     end
   end
 

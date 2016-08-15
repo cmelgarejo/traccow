@@ -1,7 +1,7 @@
 defmodule Traccow.WeightType do
   use Traccow.Web, :model
 
-  schema "weighttypes" do
+  schema "weight_types" do
     field :name, :string
     field :description, :string
 

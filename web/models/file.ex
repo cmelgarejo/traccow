@@ -8,8 +8,10 @@ defmodule Traccow.File do
     field :code, :string
     field :notes, :string
     field :image, :string
-    
+    field :breed_id, :integer
+
     belongs_to :client, Traccow.Client
+    has_one  :breed, Traccow.Breed, on_delete: :delete_all
     has_many :event, Traccow.Event, on_delete: :delete_all
     has_many :weight, Traccow.Weight, on_delete: :delete_all
     has_many :position, Traccow.Position, on_delete: :delete_all
@@ -17,8 +19,8 @@ defmodule Traccow.File do
     timestamps
   end
 
-  @required_fields ~w(code)
-  @optional_fields ~w(notes)
+  @required_fields ~w(code client_id)
+  @optional_fields ~w(notes image breed_id)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

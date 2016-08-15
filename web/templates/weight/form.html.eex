@@ -6,6 +6,17 @@
   <% end %>
 
   <div class="form-group">
+    <%= hidden_input f, :file_id, value: "30bae558-5221-4378-98e1-afc50b0eaf65",  class: "form-control" %>
+    <%= error_tag f, :file_id %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :weight_type_id, class: "control-label" %>
+    <%= select f, :weight_type_id, ["Peso al nacimiento": 1, "Peso al destete": 2, "Peso a los 12 meses": 3, "Peso a los 24 meses": 4, "Peso para entore": 5 ], class: "form-control" %>
+    <%= error_tag f, :weight_type_id %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :weight, class: "control-label" %>
     <%= number_input f, :weight, step: "any", class: "form-control" %>
     <%= error_tag f, :weight %>
@@ -13,8 +24,12 @@
 
   <div class="form-group">
     <%= label f, :weight_date, class: "control-label" %>
-    <%= datetime_select f, :weight_date, class: "form-control" %>
-    <%= error_tag f, :weight_date %>
+    <%= datetime_select f, :weight_date, required: "", default: Ecto.DateTime.cast!(:calendar.local_time), builder: fn b -> %>
+    <%= b.(:day, []) %> / <%= b.(:month, [options: l10n_select_date_months]) %> / <%= b.(:year, []) %>
+    -
+    <%= b.(:hour, []) %> : <%= b.(:min, []) %>
+    <% end %>
+    <%= error_tag f, :event_date %>
   </div>
 
   <div class="form-group">

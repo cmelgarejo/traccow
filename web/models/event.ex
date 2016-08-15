@@ -12,7 +12,7 @@ defmodule Traccow.Event do
     timestamps
   end
 
-  @required_fields ~w(notes event_date)
+  @required_fields ~w(notes event_date file_id)
   @optional_fields ~w()
 
   @doc """

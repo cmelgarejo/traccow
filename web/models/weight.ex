@@ -7,12 +7,14 @@ defmodule Traccow.Weight do
   schema "weights" do
     field :weight, :float
     field :weight_date, Ecto.DateTime
+    field :weight_type_id, :integer
 
     belongs_to :file, Traccow.File
+    has_one :weight_type, Traccow.WeightType
     timestamps
   end
 
-  @required_fields ~w(weight weight_date)
+  @required_fields ~w(weight weight_date file_id weight_type_id)
   @optional_fields ~w()
 
   @doc """
