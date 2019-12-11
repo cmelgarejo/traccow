@@ -6,7 +6,7 @@ Using GPS and WiFi/Bluetooth network meshes to track and locate live stock, the
 app also mantains a file for each of the animals; tracks their feeding,
 growth and provides specialized tips for each animal according their data.
 
-##### -Honorable mention-
+#### -Honorable mention at Agro Hackathon paraguay 2015-
 
 ## Getting started
 
